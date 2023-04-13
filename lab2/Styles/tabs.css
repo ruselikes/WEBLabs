@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	max-width: 80%;
+	margin: 1% auto 0;
+
+}
+
+.container--tabs {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+
+}
+.container--tabs .tab {
+	cursor: pointer;
+	display: block;
+	padding: 7px 20px 8px;
+	border: solid #ecf0f1;
+	border-width: 1px 1px 0;
+	background: #f5f7fa;
+	font-size: 19px;
+
+}
+.container--tabs .tab:first-child{
+	border-radius: 10px 0px 0px 0px;
+}
+.container--tabs .tab:last-child{
+	border-radius: 0px 10px 0px 0px;
+}
+
+.container--tabs .tab:hover {
+	background-color: #ecf0f1;
+}
+.container--tabs .tab--active {
+	background-color: #fff;
+	color: black;
+	pointer-events: none;
+}
+
+.content {
+	display: none;
+	padding: 3em;
+	background-color: #fff;
+	box-shadow:   0px 5px 20px  #00000040;
+
+}
+
+.content--active {
+	display: block;
+}
+
+h2 {
+	margin-bottom: 20px;
+	font-weight: 700;
+}
+
+p {
+	font-weight: 300;
+	margin: 20px 0;
+}

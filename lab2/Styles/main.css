@@ -1,0 +1,244 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#c5f5f6, #b5b5d1,#b4e5ee);
+    font-family: "Montserrat Regular",sans-serif;
+    display: flex;
+    align-items: center; /* Выравниваем контент по вертикали */
+    justify-content: center; /* Выравниваем контент по горизонтали */
+    flex-direction: column;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 30px;
+}
+
+main {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+
+}
+.mainscreen {
+    background-image: url("../back.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+.abc{
+
+
+    width: 80%;
+}
+.abc h2{
+    color: white;
+    font-family: "Montserrat Regular",sans-serif;
+    font-size: 50px;
+}
+/*.wrapper{*/
+/*    background-color: yellow;*/
+/*    display: flex;*/
+/*}*/
+.navigation {
+    width: 80%;
+    padding: 0px 10% 0px 10%;
+    text-align: center;
+
+}
+.mainscreen{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравниваем контент по вертикали */
+    justify-content: center; /* Выравниваем контент по горизонтали */
+}
+.footer{
+    width: 80%;
+
+    position: relative;
+    display: flex;
+    justify-content: end;
+}
+.top {
+    text-align: center;
+    display: flex;
+    padding: 20px;
+
+    justify-content:space-between ; /* Горизонтальное центрирование */
+    align-items: center; /* Вертикальное центрирование **/
+    list-style-type: none;
+}
+.link{
+    text-decoration: none;
+}
+.top li{
+    margin: 0px 10px 0px 10px;
+}
+section {
+    margin-bottom: 0px;
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+.top ul,a{
+    color: chocolate;
+    list-style: none;
+    text-decoration: none;
+}
+
+.cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 1fr;*/
+}
+
+.card {
+    height: 450px;
+    width: 45%;
+    margin: 10px;
+    padding-top: 20%;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.card p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: white;
+}
+
+.card a {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #ffffff;
+}
+.card a:hover{
+    color:green;
+}
+/*Футер-------------------------------------------------------*/
+footer {
+    color: #333;
+    font-size: 14px;
+    padding: 50px 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+
+    margin: 0 20px;
+}
+
+
+.footer-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+    color: #54B948;
+}
+
+.social i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #333;
+}
+
+.footer-bottom {
+
+    padding: 10px 0;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+/*Табы 2*/
+.container2{
+    padding: 0;
+    margin: 100px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content2{
+    background: rgb(255, 255, 255);
+    width: 700px;
+
+}
+
+.tabs span {
+    display: inline-block;
+    border-radius: 5px 5px 0 0;
+    width: 100px;
+    margin-right: 10px;
+    text-align: center;
+    background: #949494;
+    padding: 5px;
+
+}
+
+.tabs span.active {
+    background: #eee;
+}
+
+.content2 .item{
+    display: none;
+}
+
+.content2 .item.active{
+    display:block;
+}
+
+/*табы 2*/
+
+
