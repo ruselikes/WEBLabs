@@ -1,0 +1,31 @@
+.container--to--do{
+    margin-top: 50px;
+    width: 80%;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow:   0px 5px 20px  #00000040;
+    padding: 20px;
+
+}
+#todo-form label,
+#todo-form input,
+#todo-form textarea,
+#todo-form button {
+    /*display: block;*/
+    margin-bottom: 5px;
+}
+
+#todo-submit{
+    font-family: "Montserrat Regular",sans-serif;
+    font-size: 40px;
+    background: #b4d3e3;
+
+}
+#todo-list li{
+    margin-left: 50px;
+    list-style: none;
+}

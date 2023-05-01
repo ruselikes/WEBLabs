@@ -6,12 +6,10 @@
     <link rel="stylesheet" type="text/css" href="../Styles/main.css">
     <link rel="stylesheet" type="text/css" href="../Styles/footer.css">
     <link rel="stylesheet" type="text/css" href="../Styles/tabs.css">
-    <script
-            src="https://code.jquery.com/jquery-3.6.3.js"
-            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-            crossorigin="anonymous">
-    </script>
+    <link rel="stylesheet" type="text/css" href="../Styles/todo.css">
+
     <script src="script.js"></script>
+
 
 </head>
 <body>
@@ -68,7 +66,7 @@
             </div>
 
     </section>
-    <section class="container">
+<!--    <section class="container">-->
 <!--        <ul class="container&#45;&#45;tabs">-->
 <!--            <li class="tab tab&#45;&#45;active">Iphone 14</li>-->
 <!--            <li class="tab">Iphone 13</li>-->
@@ -119,19 +117,30 @@
             <ul class="container--tabs"></ul>
             <div class="container--content"></div>
         </section>
-    </section>
-<!--    <div class="secondcontainer">-->
-<!--        <div class="tabs">-->
-<!--            <span class="active">Tyler</span>-->
-<!--            <span>Хаски</span>-->
-<!--            <span>Noize Mc</span>-->
-<!--        </div>-->
-<!--        <div class="content2">-->
-<!--            <div class="item active"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam esse voluptas minus autem, veniam</p></div>-->
-<!--            <div class="item"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam esse voluptas minus autem, veniam</p></div>-->
-<!--            <div class="item"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam esse voluptas minus autem, veniam</p></div>-->
-<!--        </div>-->
-<!--    </div>-->
+        <section class="container--to--do">
+            <div>
+                <h2>List to buy:</h2>
+                <form id="todo-form">
+                    <label><b>Модель:</b></label><br>
+                    <input type="text" id="todo-title" name="todo-title" required>
+                    <br>
+                    <label for="todo-description">Зачем покупаю:</label><br>
+                    <textarea id="todo-description" name="todo-description"></textarea>
+                    <br>
+                    <button type="submit" id="todo-submit">Add Task</button>
+                </form>
+            </div>
+            <div>
+                <ul id="todo-list">
+                    <!-- список задач будет отображаться здесь -->
+                </ul>
+            </div>
+        </section>
+
+
+    <!--</section>-->
+
+
     <footer>
         <div class="footer-content">
             <div class="footer-section about">
@@ -175,59 +184,8 @@
             </div>
         </div>
 
-        <script>
-            const tabsContainer = document.querySelector('.container--tabs');
-            const contentContainer = document.querySelector('.container--content');
 
-
-            fetch('../data.json')
-                .then(response => response.json())
-                .then(data => {
-                    //  Создание вкладок (li В ul)
-                    data.forEach((iphone, index) => {
-                        const tab = document.createElement('li');
-                        tab.className = 'tab' + (index == 0 ? ' tab--active' : '');
-                        tab.textContent = iphone.title;
-                        tabsContainer.appendChild(tab);
-
-                        // Создание контетной части
-                        const content = document.createElement('div');
-                        content.className = 'content' + (index == 0 ? ' content--active' : '');
-                        content.innerHTML = `
-                        <h2>${iphone.title}</h2>
-                        <p>${iphone.description}</p>
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src="${iphone.videoUrl}"
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>`;
-                        contentContainer.appendChild(content);
-                    });
-
-                    // Для каждой вкладки добавлю лисенеры по клику
-                    const tabs = document.querySelectorAll('.tab');
-                    tabs.forEach((tab, index) => {
-                        tab.addEventListener('click', () => {
-                            // Сделаю все неактивным( и вкладка, и контент)
-                            tabs.forEach(tab => tab.classList.remove('tab--active'));
-                            const contents = document.querySelectorAll('.content');
-                            contents.forEach(content => content.classList.remove('content--active'));
-
-                            // Сделаю вкладку по которой кликнули активной, и соответсвующий (по индексу) ее контент тоже
-                            tab.classList.add('tab--active');
-                            const content = contents[index];
-                            content.classList.add('content--active');
-                        });
-                    });
-                });
-        </script>
-
-
-
-        <!--        <script>-->
+<!--                <script>-->
 <!--            // получаем массив всех вкладок-->
 <!--            const tabs = document.querySelectorAll(".tab");-->
 <!--            // получаем массив всех блоков с содержимым вкладок-->
@@ -257,6 +215,8 @@
 
 <!--        </script>-->
     </footer>
+    <script src="todoscript.js"></script>
+    <script src="tabs.js"></script>
 
 </body>
 </html>
