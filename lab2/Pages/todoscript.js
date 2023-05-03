@@ -19,11 +19,6 @@
     const todo = { title, description };
     todos.push(todo);
 
-    // создаем элемент списка задач и добавляем его в todoList
-    // const todoItem = document.createElement("li");
-    // todoItem.innerText = `${todo.title}: ${todo.description}`;
-    // todoList.appendChild(todoItem);
-
     // очищаем поля формы
     todoTitle.value = "";
     todoDescription.value = "";
@@ -42,5 +37,4 @@
     }
     }
 
-    // отображаем список задач при загрузке страницы
 
