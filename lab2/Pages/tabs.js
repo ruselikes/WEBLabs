@@ -3,7 +3,7 @@
     const contentContainer = document.querySelector('.container--content');
 
 
-    fetch('../data.json')
+    fetch('/tabs.json')
     .then(response => response.json())
     .then(data => {
     //  Создание вкладок (li В ul)
