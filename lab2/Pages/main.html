@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../Styles/main.css">
     <link rel="stylesheet" type="text/css" href="../Styles/footer.css">
     <link rel="stylesheet" type="text/css" href="../Styles/tabs.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/tobuylist.css">
     <script
             src="https://code.jquery.com/jquery-3.6.3.js"
             integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
@@ -68,70 +69,31 @@
             </div>
 
     </section>
-    <section class="container">
-<!--        <ul class="container&#45;&#45;tabs">-->
-<!--            <li class="tab tab&#45;&#45;active">Iphone 14</li>-->
-<!--            <li class="tab">Iphone 13</li>-->
-<!--            <li class="tab">Iphone 12</li>-->
-<!--        </ul>-->
 
-<!--        <div class="container&#45;&#45;content">-->
-<!--            <div class="content content&#45;&#45;active">-->
-<!--                <h2>Iphone 14</h2>-->
-<!--                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur doloribus necessitatibus possimus.</p>-->
-<!--                <iframe-->
-<!--                        width="100%"-->
-<!--                        height="315"-->
-<!--                        src="https://www.youtube.com/embed/C8nSe_D24hA"-->
-<!--                        title="YouTube video player" frameborder="0"-->
-<!--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
-<!--                        allowfullscreen>-->
-
-<!--                </iframe>-->
-<!--            </div>-->
-<!--            <div class="content">-->
-<!--                <h2>Iphone 13</h2>-->
-<!--                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur doloribus necessitatibus possimus.</p>-->
-<!--                <iframe-->
-<!--                    width="100%"-->
-<!--                    height="315"-->
-<!--                    src="https://www.youtube.com/embed/C8nSe_D24hA"-->
-<!--                    title="YouTube video player" frameborder="0"-->
-<!--                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
-<!--                    allowfullscreen>-->
-<!--                </iframe>-->
-<!--            </div>-->
-<!--            <div class="content">-->
-<!--                <h2>Iphone 12</h2>-->
-<!--                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam esse voluptas minus autem, veniam </p>-->
-<!--                <iframe-->
-<!--                        width="100%"-->
-<!--                        height="315"-->
-<!--                        src="https://www.youtube.com/embed/C8nSe_D24hA"-->
-<!--                        title="YouTube video player" frameborder="0"-->
-<!--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
-<!--                        allowfullscreen>-->
-
-<!--                </iframe>-->
-<!--            </div>-->
-<!--        </div>-->
         <section class="container">
             <ul class="container--tabs"></ul>
             <div class="container--content"></div>
         </section>
-    </section>
-<!--    <div class="secondcontainer">-->
-<!--        <div class="tabs">-->
-<!--            <span class="active">Tyler</span>-->
-<!--            <span>Хаски</span>-->
-<!--            <span>Noize Mc</span>-->
-<!--        </div>-->
-<!--        <div class="content2">-->
-<!--            <div class="item active"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam esse voluptas minus autem, veniam</p></div>-->
-<!--            <div class="item"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam esse voluptas minus autem, veniam</p></div>-->
-<!--            <div class="item"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam esse voluptas minus autem, veniam</p></div>-->
-<!--        </div>-->
-<!--    </div>-->
+
+    <div class="todos">
+        <div>
+        <h2>Список покупок</h2>
+        <form id="todo-form">
+            <label for="todo-title">Товар:</label>
+            <input type="text" id="todo-title" name="todo-title" required>
+            <br>
+            <label for="todo-description">Зачем покупаю:</label>
+            <textarea id="todo-description" name="todo-description"></textarea>
+            <br>
+            <button type="submit" id="todo-submit">Добавить</button>
+        </form>
+        </div>
+        <div>
+        <ul id="todo-list">
+            <!-- список задач будет отображаться здесь -->
+        </ul>
+        </div>
+    </div>
     <footer>
         <div class="footer-content">
             <div class="footer-section about">
@@ -175,55 +137,6 @@
             </div>
         </div>
 
-        <script>
-            const tabsContainer = document.querySelector('.container--tabs');
-            const contentContainer = document.querySelector('.container--content');
-
-
-            fetch('../data.json')
-                .then(response => response.json())
-                .then(data => {
-                    //  Создание вкладок (li В ul)
-                    data.forEach((iphone, index) => {
-                        const tab = document.createElement('li');
-                        tab.className = 'tab' + (index == 0 ? ' tab--active' : '');
-                        tab.textContent = iphone.title;
-                        tabsContainer.appendChild(tab);
-
-                        // Создание контетной части
-                        const content = document.createElement('div');
-                        content.className = 'content' + (index == 0 ? ' content--active' : '');
-                        content.innerHTML = `
-                        <h2>${iphone.title}</h2>
-                        <p>${iphone.description}</p>
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src="${iphone.videoUrl}"
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>`;
-                        contentContainer.appendChild(content);
-                    });
-
-                    // Для каждой вкладки добавлю лисенеры по клику
-                    const tabs = document.querySelectorAll('.tab');
-                    tabs.forEach((tab, index) => {
-                        tab.addEventListener('click', () => {
-                            // Сделаю все неактивным( и вкладка, и контент)
-                            tabs.forEach(tab => tab.classList.remove('tab--active'));
-                            const contents = document.querySelectorAll('.content');
-                            contents.forEach(content => content.classList.remove('content--active'));
-
-                            // Сделаю вкладку по которой кликнули активной, и соответсвующий (по индексу) ее контент тоже
-                            tab.classList.add('tab--active');
-                            const content = contents[index];
-                            content.classList.add('content--active');
-                        });
-                    });
-                });
-        </script>
 
 
 
@@ -257,6 +170,88 @@
 
 <!--        </script>-->
     </footer>
+        <script>
+            const tabsContainer = document.querySelector('.container--tabs');
+            const contentContainer = document.querySelector('.container--content');
+            fetch('../data.json')
+                .then(response => response.json())
+                .then(data => {
+                    //  Создание вкладок (li В ul)
+                    data.forEach((iphone, index) => {
+                        const tab = document.createElement('li');
+                        tab.className = 'tab' + (index == 0 ? ' tab--active' : '');
+                        tab.textContent = iphone.title;
+                        tabsContainer.appendChild(tab);
+
+                        // Создание контетной части
+                        const content = document.createElement('div');
+                        content.className = 'content' + (index == 0 ? ' content--active' : '');
+                        content.innerHTML = `
+                        <h2>${iphone.title}</h2>
+                        <p>${iphone.description}</p>
+                        <iframe
+                            width="100%"
+                            height="315"
+                            src="${iphone.videoUrl}"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>`;
+                        contentContainer.appendChild(content);
+                    });
+
+                    // Для каждой вкладки добавлю лисенеры по клику
+                    const tabs = document.querySelectorAll('.tab');
+                    tabs.forEach((iphone, index) => {
+                        iphone.addEventListener('click', () => {
+                            // Сделаю все неактивным( и вкладка, и контент)
+                            tabs.forEach(tab => iphone.classList.remove('tab--active'));
+                            const contents = document.querySelectorAll('.content');
+                            contents.forEach(content => content.classList.remove('content--active'));
+
+                            // Сделаю вкладку по которой кликнули активной, и соответсвующий (по индексу) ее контент тоже
+                            iphone.classList.add('tab--active');
+                            const content = contents[index];
+                            content.classList.add('content--active');
+                        });
+                    });
+                });
+        </script>
+        <script>
+            const todoForm = document.getElementById("todo-form");
+            const todoTitle = document.getElementById("todo-title");
+            const todoDescription = document.getElementById("todo-description");
+            const todoList = document.getElementById("todo-list");
+
+            // создаем пустой массив для хранения задач
+            let todos = [];
+            let c=1;
+
+            // обработчик отправки формы
+            todoForm.addEventListener("submit", (event) => {
+                // отменяем стандартное поведение браузера при отправке формы
+                event.preventDefault();
+
+                // получаем значение заголовка и описания задачи из полей формы
+                const title = todoTitle.value;
+                const description = todoDescription.value;
+
+                // создаем объект задачи и добавляем его в массив todos
+                const todo = { title, description };
+                todos.push(todo);
+
+                // создаем элемент списка задач и добавляем его в todoList
+                const todoItem = document.createElement("li");
+                todoItem.innerText = ` ${c + ") "} ${todo.title}: ${todo.description}`;
+                todoList.appendChild(todoItem);
+                c += 1;
+
+                // очищаем поля формы
+                todoTitle.value = "";
+                todoDescription.value = "";
+            });
+
+        </script>
 
 </body>
 </html>

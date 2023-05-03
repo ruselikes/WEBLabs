@@ -1,0 +1,27 @@
+form label,
+form input,
+form textarea,
+form button {
+    display: block;
+    margin-bottom: 10px;
+}
+.todos{
+    background-color: #fff;
+    box-shadow:   0px 5px 20px  #00000040;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+    min-width: 600px;
+    display: flex;
+}
+
+#todo-list{
+    margin-left:40px;
+    list-style: none;
+    padding-top: 30px;
+}
+#todo-submit{
+    font-family: "Montserrat Regular",sans-serif;
+    background-color: #b4e5ee;
+    height: 25px;
+}
