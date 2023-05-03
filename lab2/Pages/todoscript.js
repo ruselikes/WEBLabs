@@ -7,20 +7,23 @@
     function showTodoList(data) {
         // очищаем текущий список задач
         todoList.innerHTML = "";
-
+        if (data.length != 0){
         // создаем элементы списка задач и добавляем их в todoList
-        for (let i = 0; i < tobuys.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             const todoItem = document.createElement("li");
-            todoItem.innerText = `${i+1 +')  ' + tobuys[i].title}: ${tobuys[i].description}`;
+            todoItem.innerText = `${i+1 +')  ' + data[i].title}: ${data[i].description}`;
             todoList.appendChild(todoItem);
+        }}
+        else {
+            console.log("Пустой массив!")
         }
     }
     // создаем пустой массив для хранения задач
     let tobuys = [];
     fetch('http://localhost:3000/pokupki')
         .then(response => response.json())
-        .then(data => {tobuys = data;console.log(tobuys);})
-    showTodoList();
+        .then(data => {showTodoList(data);console.log(data)})
+    ;
     // обработчик отправки формы
     todoForm.addEventListener("submit", (event) => {
         // отменяем стандартное поведение браузера при отправке формы
@@ -45,13 +48,17 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(pokupka)
+
         })
+        fetch('http://localhost:3000/pokupki')
+            .then(response => response.json())
+            .then(data => {showTodoList(data);console.log(data)})
+        ;
 
 
     // очищаем поля формы
     todoTitle.value = "";
     todoDescription.value = "";
-    showTodoList();
     });
 
 

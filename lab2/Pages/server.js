@@ -12,7 +12,7 @@ var express = require("express"),
 
 const cors = require('cors');
 
-app.use(cors({origin: 'http://localhost:63343'}));
+app.use(cors({origin: 'http://localhost:63342'}));
 PORT = 3000;
 app.use(express.static(__dirname + "/client"));
 http.createServer(app).listen(PORT, ()=> {console.log(`Cлушаю ${PORT}`)});
@@ -28,12 +28,12 @@ let c = 0
 
 app.use(express.json())
 app.get("/tabs.json", function (req, res) {
-    console.log(c+" Подключился")
+    console.log(c+"Табсы ")
     c +=1;
     res.json(tabs);
 });
 app.get("/pokupki", function (req, res) {
-    console.log(c+" Подключился")
+    console.log(c+"Покупки получены")
     c +=1;
     res.json(pokupki);
 });
