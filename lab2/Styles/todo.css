@@ -21,8 +21,9 @@
 
 #todo-submit{
     font-family: "Montserrat Regular",sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     background: #b4d3e3;
+    padding: 5px;
 
 }
 #todo-list li{

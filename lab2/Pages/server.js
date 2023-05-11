@@ -104,7 +104,7 @@ app.delete("/users/:username", UsersController.destroy);
 
 
 app.get("/user/:username/", toBuysController.index);
-// app.post("/user/:username/todos", toBuysController.create);
+app.post("/user/:username/tobuys", toBuysController.create);
 // app.put("/user/:username/todos/:id", toBuysController.update);
 // app.delete("/user/:username/todos/:id", toBuysController.destroy);
 
