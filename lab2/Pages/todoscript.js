@@ -19,7 +19,7 @@
         }
     }
     // создаем пустой массив для хранения задач
-    let tobuys = [];
+    // let tobuys = [];
     fetch('http://localhost:3000/pokupki')
         .then(response => response.json())
         .then(data => {showTodoList(data);console.log(data)})
@@ -36,7 +36,7 @@
         // создаем объект задачи и добавляем его в массив todos
         const pokupka = {"title":title, "description":description};
 
-        tobuys.push(pokupka);
+        // tobuys.push(pokupka);
 
 //         $.post("/tobuy", pokupka, function (result) {
 //             console.log(result);
@@ -54,8 +54,6 @@
             .then(response => response.json())
             .then(data => {showTodoList(data);console.log(data)})
         ;
-
-
     // очищаем поля формы
     todoTitle.value = "";
     todoDescription.value = "";

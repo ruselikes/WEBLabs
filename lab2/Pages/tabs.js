@@ -33,16 +33,17 @@
     // Для каждой вкладки добавлю лисенеры по клику
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
-    // Сделаю все неактивным( и вкладка, и контент)
-    tabs.forEach(tab => tab.classList.remove('tab--active'));
-    const contents = document.querySelectorAll('.content');
-    contents.forEach(content => content.classList.remove('content--active'));
 
-    // Сделаю вкладку по которой кликнули активной, и соответсвующий (по индексу) ее контент тоже
-    tab.classList.add('tab--active');
-    const content = contents[index];
-    content.classList.add('content--active');
-});
+        tab.addEventListener('click', () => {
+            // Сделаю все неактивным( и вкладка, и контент)
+            tabs.forEach(tab => tab.classList.remove('tab--active'));
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('content--active'));
+
+            // Сделаю вкладку по которой кликнули активной, и соответсвующий (по индексу) ее контент тоже
+            tab.classList.add('tab--active');
+            const content = contents[index];
+            content.classList.add('content--active');
+        });
 });
 });
