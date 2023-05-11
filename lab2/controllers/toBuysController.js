@@ -32,12 +32,8 @@ toBuysController.create = async function (req, res) {
     // tbDB.save()
     // let allTB = ToBuy.find()
     // return res.json(tbDB)
-    const result = await User.find({ "username": username }).exec();
-    User.find({"username": username}, function (err, result) {
-        if (err) {
-            res.send(500);
-        }
-        else {
+
+    User.find({"username": username}).then(result =>  {
             if (result.length === 0) {
                 tbDB.owner = null;
             }
@@ -52,7 +48,8 @@ toBuysController.create = async function (req, res) {
                     res.status(200).json(result);
                 }
             });
-        }
-    });
+        }).catch(er => {
+            res.send(500);
+    })
 };
 module.exports = toBuysController;
