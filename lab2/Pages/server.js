@@ -1,4 +1,10 @@
 const ToBuy = require('../models/ToBuy')
+// const User = require('../models/user')
+const UsersController = require('../controllers/UsersController')
+const toBuysController = require('../controllers/toBuysController')
+
+
+
 var express = require("express"),
     http = require("http"),
     mongoose = require("mongoose")
@@ -35,7 +41,7 @@ console.log(__dirname)
 // });
 let c = 0
 
-app.use(express.json())
+
 app.get("/tabs.json", function (req, res) {
     console.log(c+"Табсы ")
     c +=1;
@@ -89,3 +95,18 @@ app.post("/tobuy", async function (req, res) {
         res.status(400).json({message: 'Ошибка при добавлении tb'})
     }
 })
+
+app.get("/users.json", UsersController.index);
+app.post("/users", UsersController.create);
+app.get("/users/:username", UsersController.show);
+app.put("/users/:username", UsersController.update);
+app.delete("/users/:username", UsersController.destroy);
+
+
+app.get("/user/:username/", toBuysController.index);
+// app.post("/user/:username/todos", toBuysController.create);
+// app.put("/user/:username/todos/:id", toBuysController.update);
+// app.delete("/user/:username/todos/:id", toBuysController.destroy);
+
+
+
