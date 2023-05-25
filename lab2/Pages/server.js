@@ -1,4 +1,4 @@
-const ToBuy = require('../models/ToBuy')
+// const ToBuy = require('../models/ToBuy')
 // const User = require('../models/user')
 const UsersController = require('../controllers/UsersController')
 const toBuysController = require('../controllers/toBuysController')
@@ -8,7 +8,7 @@ const toBuysController = require('../controllers/toBuysController')
 var express = require("express"),
     http = require("http"),
     mongoose = require("mongoose")
-    app = express(),
+app = express(),
     // настраиваем список задач копированием
 // содержимого из файла todos.OLD.json
     tabs = [
@@ -63,24 +63,6 @@ app.get("/pokupki", function (req, res) {
 
 });
 app.post("/tobuy", async function (req, res) {
-    // var newToBuy = req.body;
-    // console.log("Данные были отправлены на сервер!"/*+ {newToBuy}*/);
-    // pokupki.push(newToBuy);
-    // tbDB = new ToBuy(newToBuy)
-    // tbDB.save(function (err, result) {
-    //     if (err !== null) {
-    //         console.log();
-    //         res.send("Ошибка  при сохранении tb");
-    //     } else {
-    //         ToBuy.find(function (err, data) {
-    //             if (err !== null) {
-    //
-    //                 res.send("Ошибка при получении tb");
-    //             }
-    //             res.json(data);
-    //         })
-    //     }
-    // })})
     try {
         var tbDB = new ToBuy({
             "title": req.body.title,
@@ -103,10 +85,13 @@ app.put("/users/:username", UsersController.update);
 app.delete("/users/:username", UsersController.destroy);
 
 
-app.get("/user/:username/", toBuysController.index);
-app.post("/user/:username/tobuys", toBuysController.create);
+// app.get("/user/:username/", toBuysController.index);
+// app.post("/user/:username/tobuys", toBuysController.create);
 // app.put("/user/:username/todos/:id", toBuysController.update);
 // app.delete("/user/:username/todos/:id", toBuysController.destroy);
-
+app.get("/tobuys/pokupki", toBuysController.get);
+app.post("/tobuys/add", toBuysController.create);
+app.put("/tobuys/:id", toBuysController.update);
+app.delete("/tobuys/:id", toBuysController.delete);
 
 

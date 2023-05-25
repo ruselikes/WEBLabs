@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #3ca03c;
+            color: #fff;
+        }
+
+        .edit-input {
+            display: none;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .edit-actions button {
+            padding: 5px 10px;
+            background-color: #3ca03c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .edit-actions button.cancel {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<h1>Admin Page</h1>
+<table id="todo-table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="todo-list"></tbody>
+</table>
+
+<div id="add-form-container" class="add-form">
+    <h2>Add Todo Item</h2>
+    <form id="add-form">
+        <label for="add-title">Title:</label>
+        <input type="text" id="add-title" name="title" required>
+
+        <label for="add-description">Description:</label>
+        <textarea id="add-description" name="description" required></textarea>
+
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<script>
+    const todoList = document.getElementById("todo-list");
+    const addFormContainer = document.getElementById("add-form-container");
+    const addForm = document.getElementById("add-form");
+
+    // Функция для создания элемента списка задач
+    function createListItem(item) {
+        const listItem = document.createElement("tr");
+        listItem.innerHTML = `
+                <td contenteditable="true">${item.title}</td>
+                <td contenteditable="true">${item.description}</td>
+                <td>
+                    <button class="edit-button">Редактировать</button>
+                    <button class="delete-button">Удалить</button>
+                </td>
+            `;
+
+        const editButton = listItem.querySelector(".edit-button");
+        editButton.addEventListener("click", () => {
+            updateItem(item._id, listItem);
+        });
+
+        const deleteButton = listItem.querySelector(".delete-button");
+        deleteButton.addEventListener("click", () => {
+            deleteItem(item._id, listItem);
+        });
+
+        return listItem;
+    }
+
+    // Функция для отображения списка задач
+    async function showTodoList() {
+        try {
+            const response = await fetch("http://localhost:3000/tobuys/pokupki");
+            const data = await response.json();
+
+            todoList.innerHTML = "";
+
+            data.forEach(item => {
+                const listItem = createListItem(item);
+                todoList.appendChild(listItem);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+
+
+    // Функция для добавления элемента
+    async function addItem(event) {
+        event.preventDefault();
+
+        const title = addForm.elements.title.value;
+        const description = addForm.elements.description.value;
+
+        try {
+            const response = await fetch("http://localhost:3000/tobuys/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ title, description })
+            });
+            const data = await response.json();
+
+            const listItem = createListItem(data);
+            todoList.appendChild(listItem);
+
+            addForm.reset();
+            addFormContainer.style.display = "none";
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Функция для удаления элемента
+    function deleteItem(id, listItem) {
+        try {
+            fetch(`http://localhost:3000/tobuys/${id}`, {
+                method: "DELETE"
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const tbody = document.getElementById("todo-list");
+                        tbody.removeChild(listItem);
+                    }
+                })
+                .catch(error => console.log(error));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    // Функция для обновления элемента
+    async function updateItem(id, title, description) {
+        try {
+            const response = await fetch(`http://localhost:3000/tobuys/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ title, description })
+            });
+            const data = await response.json();
+
+            const listItem = document.querySelector(`[data-id="${id}"]`);
+            listItem.cells[0].textContent = data.title;
+            listItem.cells[1].textContent = data.description;
+
+            closeEditForm();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Обработчик события отправки формы добавления
+    addForm.addEventListener("submit", addItem);
+
+    // При загрузке страницы отображаем список задач
+    showTodoList();
+</script>
+
+
+</body>
+</html>
