@@ -27,6 +27,23 @@
 
     return listItem;
 }
+    function toggleEditMode(listItem) {
+        const cells = listItem.cells;
+        const editButton = listItem.querySelector(".edit-button");
+        const isEditMode = editButton.textContent === "Сохранить";
+
+        for (let i = 0; i < cells.length - 1; i++) {
+            const cell = cells[i];
+
+            if (isEditMode) {
+                cell.contentEditable = false;
+                editButton.textContent = "Редактировать";
+            } else {
+                cell.contentEditable = true;
+                editButton.textContent = "Сохранить";
+            }
+        }
+    }
 
     // Функция для отображения списка задач
     async function showTodoList() {
