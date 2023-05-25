@@ -47,36 +47,36 @@ app.get("/tabs.json", function (req, res) {
     c +=1;
     res.json(tabs);
 });
-app.get("/pokupki", function (req, res) {
-    // console.log(c+"Покупки получены")
-    try {
-
-        ToBuy.find().then((allTB) => {
-            // console.log(allTB);
-            return res.json(allTB);
-        });
-
-    } catch (e) {
-        console.log(e)
-        res.status(400).json({message: 'Ошибка при получении tb'})
-    }
-
-});
-app.post("/tobuy", async function (req, res) {
-    try {
-        var tbDB = new ToBuy({
-            "title": req.body.title,
-            "description": req.body.description
-        });
-        tbDB.save()
-        let allTB = ToBuy.find()
-        return res.json(tbDB)
-
-    } catch (e) {
-        console.log(e)
-        res.status(400).json({message: 'Ошибка при добавлении tb'})
-    }
-})
+// app.get("/pokupki", function (req, res) {
+//     // console.log(c+"Покупки получены")
+//     try {
+//
+//         ToBuy.find().then((allTB) => {
+//             // console.log(allTB);
+//             return res.json(allTB);
+//         });
+//
+//     } catch (e) {
+//         console.log(e)
+//         res.status(400).json({message: 'Ошибка при получении tb'})
+//     }
+//
+// });
+// app.post("/tobuy", async function (req, res) {
+//     try {
+//         var tbDB = new ToBuy({
+//             "title": req.body.title,
+//             "description": req.body.description
+//         });
+//         tbDB.save()
+//         let allTB = ToBuy.find()
+//         return res.json(tbDB)
+//
+//     } catch (e) {
+//         console.log(e)
+//         res.status(400).json({message: 'Ошибка при добавлении tb'})
+//     }
+// })
 
 app.get("/users.json", UsersController.index);
 app.post("/users", UsersController.create);

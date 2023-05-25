@@ -20,7 +20,7 @@
     }
     // создаем пустой массив для хранения задач
     // let tobuys = [];
-    fetch('http://localhost:3000/pokupki')
+    fetch('http://localhost:3000/tobuys/pokupki')
         .then(response => response.json())
         .then(data => {showTodoList(data);console.log(data)})
     ;
@@ -44,16 +44,18 @@
 // // после получения ответа сервера
 //             tobuys.push(pokupka);
 //         });
-        fetch('http://localhost:3000/tobuy', {
+        async function wait () {
+        await fetch('http://localhost:3000/tobuys/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(pokupka)
 
         })
-        fetch('http://localhost:3000/pokupki')
+        await fetch('http://localhost:3000/tobuys/pokupki')
             .then(response => response.json())
             .then(data => {showTodoList(data);console.log(data)})
-        ;
+        ;}
+        wait()
     // очищаем поля формы
     todoTitle.value = "";
     todoDescription.value = "";
